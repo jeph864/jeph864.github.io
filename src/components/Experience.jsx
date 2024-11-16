@@ -6,20 +6,21 @@ import { ProjectCard } from "./ProjectDetails";
 const TimelineEvent = ({ event, isDark }) => {
     const [isExpanded, setIsExpanded] = useState(false);
 
-    const styles = {
-        dateText: isDark ? 'text-gray-400' : 'text-gray-500',
-        dot: isDark ? 'bg-gray-700' : 'bg-gray-200',
+    const getStyles = (type, isDark) => ({
         card: isDark ? 'bg-gray-800 border-gray-700' : 'bg-white border-gray-200',
-        iconContainer: isDark ? 'border-gray-700 bg-gray-800' : 'border-gray-200 bg-white',
-        iconBg: isDark ? 'bg-gray-700' : 'bg-gray-100',
         title: isDark ? 'text-white' : 'text-gray-900',
         text: isDark ? 'text-gray-300' : 'text-gray-600',
         subtext: isDark ? 'text-gray-400' : 'text-gray-500',
-        badge: isDark ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-700',
-        expandButton: isDark ? 'text-blue-400 hover:text-blue-300' : 'text-blue-500 hover:text-blue-600',
+        iconContainer: isDark ? 'border-gray-700 bg-gray-900' : 'border-gray-200 bg-white',
+        iconBg: isDark ? 'bg-gray-800' : 'bg-gray-50',
+        expandButton: isDark ? 'text-gray-400 hover:text-gray-200' : 'text-gray-500 hover:text-gray-900',
         border: isDark ? 'border-gray-700' : 'border-gray-200',
-        tag: isDark ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-700'
-    };
+        tag: isDark ? 'bg-gray-700 text-gray-300' : 'bg-gray-100 text-gray-700',
+        dot: type === 'work' ? 'bg-blue-500' : 'bg-purple-500',
+        badge: type === 'work' ? 'bg-blue-100 text-blue-700' : 'bg-purple-100 text-purple-700',
+        dateText: isDark ? 'text-gray-400' : 'text-gray-500'
+    });
+    const styles = getStyles(event.type, isDark);
 
     const getIcon = (type) => {
         switch (type) {
